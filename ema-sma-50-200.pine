@@ -9,9 +9,6 @@ const color ema200Color = #2962FF
 
 const string chartGroup  = "Durchschnitte im aktuellen Chart"
 const string levelsGroup = "Horizontale Linien"
-const string levels1hGroup = "1 Stunde · Linien und Farben"
-const string levels4hGroup = "4 Stunden · Linien und Farben"
-const string levels1dGroup = "Tag · Linien und Farben"
 
 bool showSma50   = input.bool(true, "SMA 50", inline = "sma50", group = chartGroup)
 int sma50Length  = input.int(50, "Länge", inline = "sma50", group = chartGroup, minval = 1)
@@ -22,36 +19,24 @@ int sma200Length = input.int(200, "Länge", inline = "sma200", group = chartGrou
 bool showEma200  = input.bool(true, "EMA 200", inline = "ema200", group = chartGroup)
 int ema200Length = input.int(200, "Länge", inline = "ema200", group = chartGroup, minval = 1)
 
-bool show1h = input.bool(false, "1 Stunde", group = levelsGroup)
-bool show4h = input.bool(false, "4 Stunden", group = levelsGroup)
-bool show1d = input.bool(false, "Tag", group = levelsGroup)
+bool show1h = input.bool(false, "1 Stunde", inline = "levelTimeframes", group = levelsGroup)
+bool show4h = input.bool(false, "4 Stunden", inline = "levelTimeframes", group = levelsGroup)
+bool show1d = input.bool(false, "Tag", inline = "levelTimeframes", group = levelsGroup)
 
-bool showSma50_1h = input.bool(true, "SMA 50", inline = "sma50_1h", group = levels1hGroup) and show1h
-color sma50_1hColor = input.color(sma50Color, "", inline = "sma50_1h", group = levels1hGroup)
-bool showEma50_1h = input.bool(true, "EMA 50", inline = "ema50_1h", group = levels1hGroup) and show1h
-color ema50_1hColor = input.color(ema50Color, "", inline = "ema50_1h", group = levels1hGroup)
-bool showSma200_1h = input.bool(true, "SMA 200", inline = "sma200_1h", group = levels1hGroup) and show1h
-color sma200_1hColor = input.color(sma200Color, "", inline = "sma200_1h", group = levels1hGroup)
-bool showEma200_1h = input.bool(true, "EMA 200", inline = "ema200_1h", group = levels1hGroup) and show1h
-color ema200_1hColor = input.color(ema200Color, "", inline = "ema200_1h", group = levels1hGroup)
+bool showSma50_1h = input.bool(true, "1H SMA 50", inline = "1h_sma", group = levelsGroup) and show1h
+bool showEma50_1h = input.bool(true, "1H EMA 50", inline = "1h_ema", group = levelsGroup) and show1h
+bool showSma200_1h = input.bool(true, "1H SMA 200", inline = "1h_sma", group = levelsGroup) and show1h
+bool showEma200_1h = input.bool(true, "1H EMA 200", inline = "1h_ema", group = levelsGroup) and show1h
 
-bool showSma50_4h = input.bool(true, "SMA 50", inline = "sma50_4h", group = levels4hGroup) and show4h
-color sma50_4hColor = input.color(sma50Color, "", inline = "sma50_4h", group = levels4hGroup)
-bool showEma50_4h = input.bool(true, "EMA 50", inline = "ema50_4h", group = levels4hGroup) and show4h
-color ema50_4hColor = input.color(ema50Color, "", inline = "ema50_4h", group = levels4hGroup)
-bool showSma200_4h = input.bool(true, "SMA 200", inline = "sma200_4h", group = levels4hGroup) and show4h
-color sma200_4hColor = input.color(sma200Color, "", inline = "sma200_4h", group = levels4hGroup)
-bool showEma200_4h = input.bool(true, "EMA 200", inline = "ema200_4h", group = levels4hGroup) and show4h
-color ema200_4hColor = input.color(ema200Color, "", inline = "ema200_4h", group = levels4hGroup)
+bool showSma50_4h = input.bool(true, "4H SMA 50", inline = "4h_sma", group = levelsGroup) and show4h
+bool showEma50_4h = input.bool(true, "4H EMA 50", inline = "4h_ema", group = levelsGroup) and show4h
+bool showSma200_4h = input.bool(true, "4H SMA 200", inline = "4h_sma", group = levelsGroup) and show4h
+bool showEma200_4h = input.bool(true, "4H EMA 200", inline = "4h_ema", group = levelsGroup) and show4h
 
-bool showSma50_1d = input.bool(true, "SMA 50", inline = "sma50_1d", group = levels1dGroup) and show1d
-color sma50_1dColor = input.color(sma50Color, "", inline = "sma50_1d", group = levels1dGroup)
-bool showEma50_1d = input.bool(true, "EMA 50", inline = "ema50_1d", group = levels1dGroup) and show1d
-color ema50_1dColor = input.color(ema50Color, "", inline = "ema50_1d", group = levels1dGroup)
-bool showSma200_1d = input.bool(true, "SMA 200", inline = "sma200_1d", group = levels1dGroup) and show1d
-color sma200_1dColor = input.color(sma200Color, "", inline = "sma200_1d", group = levels1dGroup)
-bool showEma200_1d = input.bool(true, "EMA 200", inline = "ema200_1d", group = levels1dGroup) and show1d
-color ema200_1dColor = input.color(ema200Color, "", inline = "ema200_1d", group = levels1dGroup)
+bool showSma50_1d = input.bool(true, "1D SMA 50", inline = "1d_sma", group = levelsGroup) and show1d
+bool showEma50_1d = input.bool(true, "1D EMA 50", inline = "1d_ema", group = levelsGroup) and show1d
+bool showSma200_1d = input.bool(true, "1D SMA 200", inline = "1d_sma", group = levelsGroup) and show1d
+bool showEma200_1d = input.bool(true, "1D EMA 200", inline = "1d_ema", group = levelsGroup) and show1d
 
 float sma50  = ta.sma(close, sma50Length)
 float ema50  = ta.ema(close, ema50Length)
@@ -75,52 +60,70 @@ getLevels(string sourceTimeframe) =>
 [sma50_4h, ema50_4h, sma200_4h, ema200_4h] = getLevels("240")
 [sma50_1d, ema50_1d, sma200_1d, ema200_1d] = getLevels("1D")
 
-// Das Textlabel beginnt eine Kerze rechts von der letzten Kerze.
-drawLevel(bool enabled, float price, string caption, color levelColor) =>
-    if barstate.islast and enabled and not na(price)
+// Stil-Farben gelten für Plots. Die Textlabels verwenden die Chartfarben.
+drawLevelLabel(float price, string caption) =>
+    if barstate.islast and not na(price)
         int labelBar = bar_index + 1
-        float brightness = 0.2126 * color.r(levelColor) + 0.7152 * color.g(levelColor) + 0.0722 * color.b(levelColor)
-        color textColor = brightness >= 140 ? #000000 : color.white
-        var line levelLine = line.new(
-            bar_index, price, bar_index + 1, price,
-            extend = extend.both, color = levelColor,
-            style = line.style_dotted, width = 1)
         var label levelLabel = label.new(
             labelBar, price, caption, xloc = xloc.bar_index,
-            style = label.style_label_left, color = levelColor,
-            textcolor = textColor, size = size.small)
-
-        line.set_xy1(levelLine, bar_index, price)
-        line.set_xy2(levelLine, bar_index + 1, price)
+            style = label.style_label_left, color = chart.bg_color,
+            textcolor = chart.fg_color, size = size.small)
         label.set_xy(levelLabel, labelBar, price)
 
-drawLevel(showSma50_1h, sma50_1h, "1H SMA 50", sma50_1hColor)
-drawLevel(showEma50_1h, ema50_1h, "1H EMA 50", ema50_1hColor)
-drawLevel(showSma200_1h, sma200_1h, "1H SMA 200", sma200_1hColor)
-drawLevel(showEma200_1h, ema200_1h, "1H EMA 200", ema200_1hColor)
+float sma50_1hLevel = showSma50_1h ? sma50_1h : na
+float ema50_1hLevel = showEma50_1h ? ema50_1h : na
+float sma200_1hLevel = showSma200_1h ? sma200_1h : na
+float ema200_1hLevel = showEma200_1h ? ema200_1h : na
 
-drawLevel(showSma50_4h, sma50_4h, "4H SMA 50", sma50_4hColor)
-drawLevel(showEma50_4h, ema50_4h, "4H EMA 50", ema50_4hColor)
-drawLevel(showSma200_4h, sma200_4h, "4H SMA 200", sma200_4hColor)
-drawLevel(showEma200_4h, ema200_4h, "4H EMA 200", ema200_4hColor)
+float sma50_4hLevel = showSma50_4h ? sma50_4h : na
+float ema50_4hLevel = showEma50_4h ? ema50_4h : na
+float sma200_4hLevel = showSma200_4h ? sma200_4h : na
+float ema200_4hLevel = showEma200_4h ? ema200_4h : na
 
-drawLevel(showSma50_1d, sma50_1d, "1D SMA 50", sma50_1dColor)
-drawLevel(showEma50_1d, ema50_1d, "1D EMA 50", ema50_1dColor)
-drawLevel(showSma200_1d, sma200_1d, "1D SMA 200", sma200_1dColor)
-drawLevel(showEma200_1d, ema200_1d, "1D EMA 200", ema200_1dColor)
+float sma50_1dLevel = showSma50_1d ? sma50_1d : na
+float ema50_1dLevel = showEma50_1d ? ema50_1d : na
+float sma200_1dLevel = showSma200_1d ? sma200_1d : na
+float ema200_1dLevel = showEma200_1d ? ema200_1d : na
 
-// Die Kurswerte erscheinen auf der Preisskala in der Farbe ihrer Linie.
-plot(showSma50_1h ? sma50_1h : na, "1H SMA 50", sma50_1hColor, editable = false, display = display.price_scale)
-plot(showEma50_1h ? ema50_1h : na, "1H EMA 50", ema50_1hColor, editable = false, display = display.price_scale)
-plot(showSma200_1h ? sma200_1h : na, "1H SMA 200", sma200_1hColor, editable = false, display = display.price_scale)
-plot(showEma200_1h ? ema200_1h : na, "1H EMA 200", ema200_1hColor, editable = false, display = display.price_scale)
+// Der letzte Plotwert zeichnet das Niveau und sein gleichfarbiges Preislabel.
+plot(sma50_1hLevel, "1H SMA 50", sma50Color, linewidth = 1,
+    trackprice = true, show_last = 1, display = display.pane + display.price_scale)
+plot(ema50_1hLevel, "1H EMA 50", ema50Color, linewidth = 1,
+    trackprice = true, show_last = 1, display = display.pane + display.price_scale)
+plot(sma200_1hLevel, "1H SMA 200", sma200Color, linewidth = 1,
+    trackprice = true, show_last = 1, display = display.pane + display.price_scale)
+plot(ema200_1hLevel, "1H EMA 200", ema200Color, linewidth = 1,
+    trackprice = true, show_last = 1, display = display.pane + display.price_scale)
 
-plot(showSma50_4h ? sma50_4h : na, "4H SMA 50", sma50_4hColor, editable = false, display = display.price_scale)
-plot(showEma50_4h ? ema50_4h : na, "4H EMA 50", ema50_4hColor, editable = false, display = display.price_scale)
-plot(showSma200_4h ? sma200_4h : na, "4H SMA 200", sma200_4hColor, editable = false, display = display.price_scale)
-plot(showEma200_4h ? ema200_4h : na, "4H EMA 200", ema200_4hColor, editable = false, display = display.price_scale)
+plot(sma50_4hLevel, "4H SMA 50", sma50Color, linewidth = 1,
+    trackprice = true, show_last = 1, display = display.pane + display.price_scale)
+plot(ema50_4hLevel, "4H EMA 50", ema50Color, linewidth = 1,
+    trackprice = true, show_last = 1, display = display.pane + display.price_scale)
+plot(sma200_4hLevel, "4H SMA 200", sma200Color, linewidth = 1,
+    trackprice = true, show_last = 1, display = display.pane + display.price_scale)
+plot(ema200_4hLevel, "4H EMA 200", ema200Color, linewidth = 1,
+    trackprice = true, show_last = 1, display = display.pane + display.price_scale)
 
-plot(showSma50_1d ? sma50_1d : na, "1D SMA 50", sma50_1dColor, editable = false, display = display.price_scale)
-plot(showEma50_1d ? ema50_1d : na, "1D EMA 50", ema50_1dColor, editable = false, display = display.price_scale)
-plot(showSma200_1d ? sma200_1d : na, "1D SMA 200", sma200_1dColor, editable = false, display = display.price_scale)
-plot(showEma200_1d ? ema200_1d : na, "1D EMA 200", ema200_1dColor, editable = false, display = display.price_scale)
+plot(sma50_1dLevel, "1D SMA 50", sma50Color, linewidth = 1,
+    trackprice = true, show_last = 1, display = display.pane + display.price_scale)
+plot(ema50_1dLevel, "1D EMA 50", ema50Color, linewidth = 1,
+    trackprice = true, show_last = 1, display = display.pane + display.price_scale)
+plot(sma200_1dLevel, "1D SMA 200", sma200Color, linewidth = 1,
+    trackprice = true, show_last = 1, display = display.pane + display.price_scale)
+plot(ema200_1dLevel, "1D EMA 200", ema200Color, linewidth = 1,
+    trackprice = true, show_last = 1, display = display.pane + display.price_scale)
+
+drawLevelLabel(sma50_1hLevel, "1H SMA 50")
+drawLevelLabel(ema50_1hLevel, "1H EMA 50")
+drawLevelLabel(sma200_1hLevel, "1H SMA 200")
+drawLevelLabel(ema200_1hLevel, "1H EMA 200")
+
+drawLevelLabel(sma50_4hLevel, "4H SMA 50")
+drawLevelLabel(ema50_4hLevel, "4H EMA 50")
+drawLevelLabel(sma200_4hLevel, "4H SMA 200")
+drawLevelLabel(ema200_4hLevel, "4H EMA 200")
+
+drawLevelLabel(sma50_1dLevel, "1D SMA 50")
+drawLevelLabel(ema50_1dLevel, "1D EMA 50")
+drawLevelLabel(sma200_1dLevel, "1D SMA 200")
+drawLevelLabel(ema200_1dLevel, "1D EMA 200")
