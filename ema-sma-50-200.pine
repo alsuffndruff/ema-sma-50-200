@@ -1,4 +1,4 @@
-A/S//@version=6
+//@version=6
 // Created by Kai Engels, based on the script from Robert Nance.
 indicator("Kais EMA/SMA 50/200 V3", shorttitle = "Kais EMA/SMA V3", overlay = true)
 
