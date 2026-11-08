@@ -1,8 +1,6 @@
 //@version=6
 // Created by Kai Engels, based on the script from Robert Nance.
-// Skriptversion: 1
-// Bei jeder Skriptänderung die Skriptversion um 1 erhöhen.
-indicator("Kais EMA/SMA 50/200", shorttitle = "Kais MAs", overlay = true)
+indicator("Kais EMA/SMA 50/200 V2", shorttitle = "Kais MA V2", overlay = true)
 
 const color sma50Color  = #C8E6C9
 const color ema50Color  = #4CAF50
