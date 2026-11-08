@@ -45,22 +45,22 @@ getLevels(string sourceTimeframe) =>
 [sma50_4h, ema50_4h, sma200_4h, ema200_4h] = getLevels("240")
 [sma50_1d, ema50_1d, sma200_1d, ema200_1d] = getLevels("1D")
 
-// Das Textlabel sitzt links vom Anker an der rechten sichtbaren Kerze.
+// Das Textlabel beginnt eine Kerze rechts von der letzten Kerze.
 drawLevel(bool enabled, float price, string caption, color levelColor, color textColor) =>
     if barstate.islast and enabled and not na(price)
-        int labelTime = chart.right_visible_bar_time
+        int labelBar = bar_index + 1
         var line levelLine = line.new(
             bar_index, price, bar_index + 1, price,
             extend = extend.both, color = levelColor,
             style = line.style_dotted, width = 1)
         var label levelLabel = label.new(
-            labelTime, price, caption, xloc = xloc.bar_time,
-            style = label.style_label_right, color = levelColor,
+            labelBar, price, caption, xloc = xloc.bar_index,
+            style = label.style_label_left, color = levelColor,
             textcolor = textColor, size = size.small)
 
         line.set_xy1(levelLine, bar_index, price)
         line.set_xy2(levelLine, bar_index + 1, price)
-        label.set_xy(levelLabel, labelTime, price)
+        label.set_xy(levelLabel, labelBar, price)
 
 drawLevel(show1h, sma50_1h,  "1H SMA 50",  sma50Color,  #000000)
 drawLevel(show1h, ema50_1h,  "1H EMA 50",  ema50Color,  #000000)
