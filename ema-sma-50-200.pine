@@ -1,10 +1,9 @@
 //@version=6
 // Created by Kai Engels, based on the script from Robert Nance.
-indicator("Kais EMA/SMA 50/200 V7", shorttitle = "Kais EMA/SMA V7", overlay = true)
+indicator("Kais EMA/SMA 50/200 V8", shorttitle = "Kais EMA/SMA V8", overlay = true)
 
 const string chartGroup  = "Durchschnitte und gemeinsame Farben"
 const string levelsGroup = "Horizontale Linien"
-const color weeklyColor = #8B0000
 
 bool showSma50   = input.bool(true, "SMA 50", inline = "sma50", group = chartGroup)
 int sma50Length  = input.int(50, "Länge", inline = "sma50", group = chartGroup, minval = 1)
@@ -33,7 +32,7 @@ bool showSma200_1d = input.bool(true, "SMA200", inline = "levels_1d", group = le
 bool showEma50_1d = input.bool(true, "EMA50", inline = "levels_1d", group = levelsGroup, active = show1d) and show1d
 bool showEma200_1d = input.bool(true, "EMA200", inline = "levels_1d", group = levelsGroup, active = show1d) and show1d
 
-const string sharedColorHint = "Farbe für die Chartkurve und die horizontalen Linien samt Labels für 1H, 4H und Tag. Wochenlinien sind dunkelrot."
+const string sharedColorHint = "Farbe für die Chartkurve, die horizontalen Linien und ihre Labels in allen Zeiteinheiten."
 color sma50Color = input.color(#C8E6C9, "", inline = "sma50", group = chartGroup, tooltip = sharedColorHint)
 color ema50Color = input.color(#4CAF50, "", inline = "ema50", group = chartGroup, tooltip = sharedColorHint)
 color sma200Color = input.color(#00BCD4, "", inline = "sma200", group = chartGroup, tooltip = sharedColorHint)
@@ -128,13 +127,13 @@ plot(sma200_1dLevel, "1D SMA 200", sma200Color, linewidth = 1,
 plot(ema200_1dLevel, "1D EMA 200", ema200Color, linewidth = 1,
     trackprice = true, editable = false, show_last = 1, display = display.pane + display.price_scale)
 
-plot(sma50_1wLevel, "1W SMA 50", weeklyColor, linewidth = 1,
+plot(sma50_1wLevel, "1W SMA 50", sma50Color, linewidth = 1,
     trackprice = true, editable = false, show_last = 1, display = display.pane + display.price_scale)
-plot(ema50_1wLevel, "1W EMA 50", weeklyColor, linewidth = 1,
+plot(ema50_1wLevel, "1W EMA 50", ema50Color, linewidth = 1,
     trackprice = true, editable = false, show_last = 1, display = display.pane + display.price_scale)
-plot(sma200_1wLevel, "1W SMA 200", weeklyColor, linewidth = 1,
+plot(sma200_1wLevel, "1W SMA 200", sma200Color, linewidth = 1,
     trackprice = true, editable = false, show_last = 1, display = display.pane + display.price_scale)
-plot(ema200_1wLevel, "1W EMA 200", weeklyColor, linewidth = 1,
+plot(ema200_1wLevel, "1W EMA 200", ema200Color, linewidth = 1,
     trackprice = true, editable = false, show_last = 1, display = display.pane + display.price_scale)
 
 drawLevelLabel(sma50_1hLevel, "1H SMA 50", sma50Color)
@@ -152,7 +151,7 @@ drawLevelLabel(ema50_1dLevel, "1D EMA 50", ema50Color)
 drawLevelLabel(sma200_1dLevel, "1D SMA 200", sma200Color)
 drawLevelLabel(ema200_1dLevel, "1D EMA 200", ema200Color)
 
-drawLevelLabel(sma50_1wLevel, "1W SMA 50", weeklyColor)
-drawLevelLabel(ema50_1wLevel, "1W EMA 50", weeklyColor)
-drawLevelLabel(sma200_1wLevel, "1W SMA 200", weeklyColor)
-drawLevelLabel(ema200_1wLevel, "1W EMA 200", weeklyColor)
+drawLevelLabel(sma50_1wLevel, "1W SMA 50", sma50Color)
+drawLevelLabel(ema50_1wLevel, "1W EMA 50", ema50Color)
+drawLevelLabel(sma200_1wLevel, "1W SMA 200", sma200Color)
+drawLevelLabel(ema200_1wLevel, "1W EMA 200", ema200Color)
